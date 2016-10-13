@@ -8,8 +8,8 @@ require_once '/./clases/operacionesBD.php';
 require_once '/./clases/mostrar.php';
 
 // Comprobamos que se envía el año para consultar
-if(isset($_POST['calendario']))
-    $añoConsulta = $_POST['calendario'];
+if(isset($_SESSION['añoConsulta']))
+    $añoConsulta = $_SESSION['añoConsulta'];
 else
     $añoConsulta = "";
 

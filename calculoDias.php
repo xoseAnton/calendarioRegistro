@@ -113,9 +113,19 @@ if (isset($_POST['botonVisualizaCalendario'])) {
     // Guardamos en la variable de sesión el calendario consultado
     $_SESSION['añoConsulta'] = $_POST['calendario'];
     // Redirigimos a la pantalla inicial
-    header("Location: calendario.php", TRUE, 301);
+    header("Location: calendario.php");
  
 }
+
+// Comprobamos que queremos VISUALIZAR un calendario
+if (isset($_POST['botonAdministraCalendario']) && $_SESSION['rolUsuario'] == 0) {    
+    // Guardamos en la variable de sesión el calendario consultado
+    $_SESSION['añoConsulta'] = $_POST['calendario'];
+    // Redirigimos a la pantalla inicial
+    header("Location: administraCalendario.php");
+ 
+}
+
 
 ?>
 
@@ -205,19 +215,11 @@ and open the template in the editor.
             ?>
             
             <div id="zonaVisualizaCalendario">
-                <fieldset id="zonaCalendario">
-                    <legend class="textoMenu">Calendario</legend>
 
-                    <form id="formularioCalendario" name="formularioCalendario" action="<?php echo $_SERVER['PHP_SELF']; ?>" target="_blank" method="post" >
+                <form id="formularioCalendario" name="formularioCalendario" action="<?php echo $_SERVER['PHP_SELF']; ?>" target="_blank" method="post" >                        
 
-                        <div id="zonaAdministrar">
-                            <?php
-                            // Si tenemos el rol adecuado mostramos la posibilidad de crear nuevos asientos
-                            if ($_SESSION['rolUsuario'] == 0) {
-                                echo "<input type = 'submit' id = 'botonAdministraCalendario' name = 'botonAdministraCalendario' value = '' title = 'Administra los festivos del calendario seleccionado'/>";
-                            }
-                            ?>
-                        </div>
+                    <fieldset id="zonaCalendario">
+                        <legend class="textoMenu">Calendario</legend>
 
                         <div class="bloqueCalendario">
                             <select id="calendario" name="calendario" required>
@@ -240,10 +242,28 @@ and open the template in the editor.
                         <div class="cancelarFlotantes"></div>
 
 
-                    </form>
 
-                </fieldset>
+                    </fieldset>
+
+                    <?php                    
+                    // Si tenemos el rol adecuado mostramos la posibilidad de ADMINISTRAR LOS FESTIVOS
+                    if ($_SESSION['rolUsuario'] == 0) {
+                        echo "<fieldset id='zonaAdministrarCalendario'>";
+                            echo "<legend class='textoMenu'>Administrar</legend>";
+                            echo "<div class = 'zonaAdministrar'>";
+                                echo "<input type = 'submit' id = 'botonAdministraCalendario' class='botonMenu' name = 'botonAdministraCalendario' value = 'Festivos' title = 'Administra los festivos del calendario seleccionado'/>";
+                            echo "</div>";
+                            echo "<div class = 'zonaAdministrar'>";
+                                echo "<input type = 'submit' id = 'botonAñadirAño' class='botonMenu' name = 'botonAñadirAño' value = 'Nuevo año' title = 'Añade un nuevo año al calendario'/>";
+                            echo "</div>";
+                            echo "<div class='cancelarFlotantes'></div>";
+                        echo "</fieldset>";
+                    }
+                    ?>
+
+                </form>
             </div>
+            
             
         </div>
     </body>

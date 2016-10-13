@@ -14,14 +14,31 @@
 
 
 /*
-* BLOQUE CALENDARIO
+* BLOQUE ADMINISTRAR
 */
 
-#zonaCalendario {
+#zonaAdministrar {
     margin: 0 auto;
-    width: 1250px;
-    height: 500px;
+    width: 1250px;  
+    height: 780px;
 }
+
+/* COLUMNAS ADMINISTRAR */
+
+#zonaCalendario{
+    float: left;
+    width: 940px;
+    height: 780px;
+}
+
+#zonaFestivos {
+    float: right;
+    width: 300px;
+    height: 780px;
+}
+
+
+/* ZONA DEL CALENDARIO */
 
 #zonaAño {
     margin-left: 7px;
@@ -31,7 +48,7 @@
     margin: 5px 5px 5px 0px;
     padding: 0;
     float: left;
-    width: 405px;
+    width: 300px;
     height: 180px;
     border:2px solid purple;
     background-color: #eee;
@@ -40,7 +57,7 @@
 .bloqueTituloMes {
     margin: 0;
     padding: 2px 0 2px 0;
-    width: 405px;
+    width: 300px;
     height: 18px;
     background-color: limegreen;
     /* Texto del Mes */
@@ -53,16 +70,16 @@
 .tituloDiasSemana {    
     margin-left: 3px;
     padding: 0;
-    width: 405px;
+    width: 296px;
 }
 
 .bloqueTextoDiaSemana {
     float: left;
     margin: 6px 0;    
-    width: 57px;
+    width: 42px;
     /* Texto del Mes */
     text-align: center;
-    font-size: 8px;
+    font-size: 6.5px;
     font-weight: bold;
     text-transform: uppercase;     
     color: blue;
@@ -71,13 +88,13 @@
 .bloqueDiasSemana {    
     margin-left: 3px;    
     padding: 0;
-    width: 405px;
+    width: 296px;
 }
 
 
 .diaSemana {
     float: left;
-    width: 53px;    
+    width: 38px;    
     /* Texto del Mes */
     text-align: center;
     font-size: 11pt;
@@ -86,7 +103,7 @@
 
 .diaFestivo {
     float: left;
-    width: 53px;    
+    width: 38px;    
     /* Texto del Mes */
     text-align: center;
     font-size: 11pt;
@@ -98,9 +115,25 @@
 
 .casillaVacia{    
     float: left;
-    width: 53px;
+    width: 38px;
     border: 2px solid transparent;
     background-color: #eee;
+}
+
+
+/* ZONA DE FESTIVOS */
+#zonaFestivos fieldset {
+    height: 760px;
+    border: 2px solid purple;
+    background-color: #eee;
+}
+
+.textoMenu {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;    
+    color: purple;
 }
 
 .cancelarFlotantes {

@@ -8,8 +8,8 @@ require_once '/./clases/operacionesBD.php';
 require_once '/./clases/mostrar.php';
 
 // Comprobamos que se envía el año para consultar
-if(isset($_POST['calendario']))
-    $añoConsulta = $_POST['calendario'];
+if(isset($_SESSION['añoConsulta']))
+    $añoConsulta = $_SESSION['añoConsulta'];
 else
     $añoConsulta = "";
 
@@ -29,21 +29,30 @@ if (!isset($_SESSION['usuario'])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Calendario Reg. <?php echo $añoConsulta; ?></title>
+        <title>Administra Calendario</title>
         <!-- Incluimos el archivo de estilos -->        
-        <link href="estilos/estiloCalendario.css" rel="stylesheet" type="text/css">
+        <link href="estilos/estiloAdministraCalendario.css" rel="stylesheet" type="text/css">
         <!-- Incluimos el archivo de operaciones con javaScript -->        
         <script type="text/javascript" src="clases/operacionesJS.js"></script>        
     </head>
     
     <body>
         
-        <div id="zonaTitulo"><?php echo $añoConsulta; ?></div>
-        <div id="zonaCalendario">            
-            <?php
-                // Creamos el nuevo calendario
-                mostrar::crearCalendario($añoConsulta);
-            ?>            
+        <div id="zonaTitulo">Administrar año: <?php echo $añoConsulta; ?></div>
+        <div id="zonaAdministrar">   
+            <div id="zonaCalendario">
+                <?php
+                    // Creamos el nuevo calendario
+                    mostrar::crearCalendarioAdministraFestivos($añoConsulta);
+                ?>   
+            </div>
+            <div id="zonaFestivos">
+                <fieldset>
+                    <legend class="textoMenu">Festivos definidos:</legend>
+                </fieldset>
+                
+            </div>
+            <div class="cancelarFlotantes"></div>
         </div>
 
         <?php
