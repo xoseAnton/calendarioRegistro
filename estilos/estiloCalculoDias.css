@@ -1,0 +1,246 @@
+
+/*
+*   BLOQUE PARA PROGRAMA
+*/
+
+#zonaPrograma {
+    margin: 0 auto;
+    width: 364px;
+    height: 365px;
+    background-color: #eee;
+    border: 4px solid purple;
+}
+
+/*
+* BLOQUE CALCULO DE FECHAS
+*/
+
+#zonaCalculoDias {
+    margin: 5px 10px;
+    border: 2px solid purple;
+}
+
+
+.textoMenu {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;    
+    color: purple;
+}
+
+
+.bloqueCalculo {
+    margin: 0;
+    float: left;
+    width: 150px;
+    height: 200px;
+}
+
+#bloqueDerecha {
+    margin-left: 15px;
+}
+
+
+.bloqueCalculoZona {
+    height: 60px;
+    margin-bottom: 5px;
+}
+
+
+.textoBloquesCalculo {    
+    font-size: 10pt;
+    font-family: Courier;
+    font-weight: bold;
+    padding: 7px 0;
+}
+
+
+#fechaInicial {
+    color: blue;
+    font-size: 11pt;
+    font-weight: bold;
+    width: 145px;
+    height: 25px;
+}
+
+
+.bloqueParCalculoZona {
+    float: left;
+    width: 75px;
+}
+
+
+#numeroDias {
+    width: 60px;    
+    height: 20px;
+    /* Texto */
+    text-align: center;
+    color: blue;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+
+#diasHabiles {    
+    margin-left: 20px;
+    width: 15px;
+    height: 25px;
+}
+
+#botonCalcula {
+    margin-top: 20px;
+}
+
+
+/* ZONA DE RESULTADOS */
+
+#bloqueZonaDespacho {
+    border: 1px solid purple;
+    background-color: #20c74c;
+}
+
+#bloqueZonaCaducidad {
+    border: 1px solid purple;
+    background-color: beige;
+}
+
+#bloqueZonaResultadoFinal {
+    border: 1px solid purple;
+    background-color: #F56C6E;
+}
+
+.textoBloquesResultado {
+    text-align: center;
+    font-size: 10pt;
+    font-family: Courier;
+    font-weight: bold;
+    padding: 7px 0;
+}
+
+.textoResultado {
+    text-align: center;
+    color: blue;
+    font-size: 14pt;
+    font-family: Courier;
+    font-weight: bold;    
+    border: none;
+    width: 150px;
+    height: 25px;
+    background-color: transparent;
+}
+
+#textoBloqueResultadoFinal {
+    font-size: 13pt;
+}
+
+
+/* Para todos los botones */
+
+.botonMenu {
+    outline: none;
+    width:128px;
+    height:30px;
+    padding-left:0px;    
+    font-weight: bold;
+    color: blue;
+    background-color: aliceblue;            
+    border-radius: 0.8em;
+}
+
+.botonMenu:hover {
+  border: 2px solid purple;  
+  color: red;
+}
+
+.botonMenu:focus {  
+  border: 2px solid purple;   
+  color: red;
+}
+
+
+/* ZONA PARA MOSTRAR INFORMACIÓN DE ERRORES */
+#zonaInformacionErrores {
+    /* Ocultamos la información pero manteniendo su espacio */
+    visibility: hidden;
+    margin: 5px 0;
+    width: 364px;
+    height: 25px;
+}
+
+#textoInformacionErrores {
+    width: 364px;
+    height: 25px;
+    text-align: center;
+    border: none;
+    font-family: Verdana, Arial, sans-serif; 
+    font-weight: bold;
+    font-size: 9pt;
+    color: red;
+    background-color : #ffff00;    
+}
+
+
+/*
+*   ZONA PARA VISUALIZAR LOS CALENDARIOS
+*/
+
+#zonaCalendario {    
+    margin: 0px 10px;
+    height: 60px;    
+    background-color: bisque;
+    border: 2px solid purple;
+}
+
+.bloqueCalendario {
+    float: left;
+    width: 130px;
+    height: 45px;
+}
+
+#calendario {
+    float: left;
+    margin-top: 2px;
+    width: 90px;    
+    height: 40px;   
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+#botonVisualizaCalendario {
+    float: right;
+    margin-top: 8px;
+}
+
+/*
+*   BOTON ADMINISTRA CALENDARIO
+*/
+
+#zonaAdministrar {
+    float: left;
+    width: 30px;
+    height: 45px;
+}
+
+#botonAdministraCalendario {    
+    float: left;
+    outline: none;   
+    width: 27px;
+    height:27px;
+    background-image: url(../imagenes/administrar_boton.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border: none;
+    background-color: transparent;
+}
+
+#botonAdministraCalendario:hover, #botonAdministraCalendario:focus {
+    border: 2px solid red;
+}
+
+
+/* Para cancelar espacios en Flotantes */
+
+.cancelarFlotantes {
+    clear: both;
+}

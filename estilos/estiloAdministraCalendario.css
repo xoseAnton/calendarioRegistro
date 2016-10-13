@@ -1,0 +1,108 @@
+/*
+*   BLOQUE TÍTULO
+*/
+#zonaTitulo {
+    margin: 0 auto;
+    width: 1250px;
+    /* Texto del Titulo */
+    text-align: center;
+    font-size: 35pt;
+    font-weight: bold;
+    color: purple;
+    
+}
+
+
+/*
+* BLOQUE CALENDARIO
+*/
+
+#zonaCalendario {
+    margin: 0 auto;
+    width: 1250px;
+    height: 500px;
+}
+
+#zonaAño {
+    margin-left: 7px;
+}
+
+.bloqueMes {
+    margin: 5px 5px 5px 0px;
+    padding: 0;
+    float: left;
+    width: 405px;
+    height: 180px;
+    border:2px solid purple;
+    background-color: #eee;
+}
+
+.bloqueTituloMes {
+    margin: 0;
+    padding: 2px 0 2px 0;
+    width: 405px;
+    height: 18px;
+    background-color: limegreen;
+    /* Texto del Mes */
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;    
+}
+
+.tituloDiasSemana {    
+    margin-left: 3px;
+    padding: 0;
+    width: 405px;
+}
+
+.bloqueTextoDiaSemana {
+    float: left;
+    margin: 6px 0;    
+    width: 57px;
+    /* Texto del Mes */
+    text-align: center;
+    font-size: 8px;
+    font-weight: bold;
+    text-transform: uppercase;     
+    color: blue;
+}
+
+.bloqueDiasSemana {    
+    margin-left: 3px;    
+    padding: 0;
+    width: 405px;
+}
+
+
+.diaSemana {
+    float: left;
+    width: 53px;    
+    /* Texto del Mes */
+    text-align: center;
+    font-size: 11pt;
+    font-weight: bold;   
+}
+
+.diaFestivo {
+    float: left;
+    width: 53px;    
+    /* Texto del Mes */
+    text-align: center;
+    font-size: 11pt;
+    font-weight: bold;
+    /* Fondo rojo */
+    background-color: red;
+    border-color: red;
+}
+
+.casillaVacia{    
+    float: left;
+    width: 53px;
+    border: 2px solid transparent;
+    background-color: #eee;
+}
+
+.cancelarFlotantes {
+    clear: both;
+}
