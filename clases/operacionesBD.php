@@ -174,6 +174,7 @@ class operacionesBD {
         return $diasFestivos;        
     }
     
+    
     // Función para CALCULAR LA FECHA FINAL DANDO LOS DÍAS HÁBILES
     public static function fechaFinal($fechaInicial, $diasHabiles) {
         
@@ -222,10 +223,27 @@ class operacionesBD {
         }                        
         } while ($diasHabilesIntervalo > 0);
         
-        // Retornamos la fecha de resultado obtenida
-        return date_format($fechaControlFinal, "d/m/Y");        
+        /*
+         * Comprobamos que la fecha Resultante está dentro de los años definidos
+         */
+        $encontrado = FALSE;
+        
+        if(isset($_SESSION['añosDefinidos'])) {
+            $añoResultado = date_format($fechaControlFinal, "Y");            
+            $listaCalendarios = unserialize($_SESSION['añosDefinidos']);
+            foreach ($listaCalendarios as $calendario) {
+                if($calendario == $añoResultado)
+                    $encontrado = TRUE;               
+            }
+        }
+        
+        if($encontrado == TRUE)
+            return date_format($fechaControlFinal, "d/m/Y");
+        else 
+            return "Indefinido";
     }
     
+        
     // Función para CALCULAR LA FECHA FINAL DANDO LOS DÍAS HÁBILES
     public static function listarAñosDefinidos() {
         // Comando para la consulta
