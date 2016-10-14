@@ -40,15 +40,20 @@ if (!isset($_SESSION['usuario'])) {
         
         <div id="zonaTitulo">Administrar año: <?php echo $añoConsulta; ?></div>
         <div id="zonaAdministrar">   
+            
             <div id="zonaCalendario">
                 <?php
                     // Creamos el nuevo calendario
                     mostrar::crearCalendarioAdministraFestivos($añoConsulta);
                 ?>   
             </div>
+            
             <div id="zonaFestivos">
                 <fieldset>
                     <legend class="textoMenu">Festivos definidos:</legend>
+                    <div id="contenFestivos">
+                        
+                    </div>
                 </fieldset>
                 
             </div>
@@ -60,6 +65,8 @@ if (!isset($_SESSION['usuario'])) {
         $diasInhabiles = operacionesBD::encontrarFestivos($añoConsulta);
         // Pasamos los días inhabiles para marcar con color ROJO
         echo "<script>mostrarDiasInhabiles(".json_encode($diasInhabiles).");</script>";        
+        // Mostramos los días festivos en la página
+        echo "<script>mostrarFestivos(".json_encode($diasInhabiles).");</script>";
         ?>
 
     </body>

@@ -123,17 +123,36 @@
 
 /* ZONA DE FESTIVOS */
 #zonaFestivos fieldset {
-    height: 760px;
+    height: 750px;
     border: 2px solid purple;
     background-color: #eee;
 }
 
 .textoMenu {
     text-align: center;
-    font-size: 15px;
+    font-size: 15pt;
     font-weight: bold;
     text-transform: uppercase;    
     color: purple;
+}
+
+#contenFestivos {
+    width: 130px;
+    height: 730px;
+    background-color: white;
+    /*Barras de desplazamiento */    
+    overflow-x: hidden;
+    overflow-y: scroll;    
+}
+
+.textoFestivo{   
+    width: 100px;
+    margin: 3px 0;
+    border: none;
+    /* Propiedades Texto */    
+    font-weight: bold;
+    font-size: 11pt;
+    text-align: center;
 }
 
 .cancelarFlotantes {
