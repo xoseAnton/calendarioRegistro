@@ -166,7 +166,9 @@ class operacionesBD {
             // Añadimos un elemento por cada festivo obtenido
             $row = $resultado->fetch();
             while ($row != null) {
-                $diasFestivos[] = $row[0];
+                $fechaEncontrada = date_create(date($row[0]));
+                // Lo guardamos con este formato (Año con 4 dígitos, mes con dos dígitos y día 1-31)
+                $diasFestivos[] = date_format($fechaEncontrada, "Y-m-j");
                 $row = $resultado->fetch();
             }
         }
