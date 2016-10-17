@@ -167,8 +167,8 @@ class operacionesBD {
             $row = $resultado->fetch();
             while ($row != null) {
                 $fechaEncontrada = date_create(date($row[0]));
-                // Lo guardamos con este formato (Año con 4 dígitos, mes con dos dígitos y día 1-31)
-                $diasFestivos[] = date_format($fechaEncontrada, "Y-m-j");
+                // Lo guardamos con este formato (Año con 4 dígitos, mes 1-12 y día 1-31)
+                $diasFestivos[] = date_format($fechaEncontrada, "Y-n-j");
                 $row = $resultado->fetch();
             }
         }

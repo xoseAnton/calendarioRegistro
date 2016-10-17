@@ -57,10 +57,10 @@ function añadeSuprimeFestivo(diaFestivo) {
     for(i=0; i<listaFormatoFestivos.length; i++) {
         var formatoFestivo = listaFormatoFestivos[i].value;        
         // Separamos el valor obtenido para construir la fecha.
-        var cadena = formatoFestivo.split(" / ");         
+        var cadena = formatoFestivo.split(" / ");
         var fechaFestivo = cadena[2]+"-"+cadena[1]+"-"+cadena[0];
         // Guardamos el festivo en el array.
-        listaFestivos[i] = fechaFestivo;
+        listaFestivos[i] = fechaFestivo;        
     }   
     
    // Borramos todos los elementos contenidos en la zona "contenFestivos"
@@ -74,7 +74,7 @@ function añadeSuprimeFestivo(diaFestivo) {
         // Como es festivo lo marcamos como blanco y lo suprimimos de la lista
         document.getElementById("dia-"+diaFestivo).style.backgroundColor = "white";
         // Primero buscamos la posición que ocupa en el array nuestro festivo        
-        var posicionFestivo = listaFestivos.indexOf(diaFestivo);          
+        var posicionFestivo = listaFestivos.indexOf(diaFestivo);                  
         // Ahora borramos el elemento que coincide con esa posición, siempre que lo encuentre
         if(posicionFestivo >= 0)
             listaFestivos.splice(posicionFestivo,1);        
