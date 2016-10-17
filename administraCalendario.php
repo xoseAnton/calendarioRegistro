@@ -7,6 +7,11 @@ require_once '/./clases/operacionesBD.php';
 // Inserto la clase para mostra datos
 require_once '/./clases/mostrar.php';
 
+
+// Establecemos por defecto la zona horaria
+date_default_timezone_set('Europe/Berlin');
+
+
 // Comprobamos que se envía el año para consultar
 if(isset($_SESSION['añoConsulta']))
     $añoConsulta = $_SESSION['añoConsulta'];
@@ -19,6 +24,32 @@ if (!isset($_SESSION['usuario'])) {
     session_unset();
     // Redirigimos a la pantalla inicial
     header("Location: index.php");
+}
+
+// Comprobamos si queremos grabar los festivos
+if(isset($_POST['botonGrabar'])) {
+    // Definimos la lista de festivos
+    $listaFestivos = array();
+    // Variable de control
+    $errores = FALSE;
+    // Limpiamos la variable de errores
+    unset($_SESSION['errores']);    
+    
+    // Recorremos todos datos enviados
+    foreach ($_POST as $nombre => $valor) {
+        // Recorremos todos los $_POST excepto el boton de grabar.
+        if($nombre != "botonGrabar"){
+            // Separamos la fecha recuperada
+            $porciones = explode(" / ", $valor);
+            // Comprobamos que la fecha introducida es correcta
+            if (!checkdate($porciones[1], $porciones[0], $porciones[2])) { 
+                $_SESSION['errores'][] = "Error en: ".$valor;
+                $errores = TRUE;
+            }
+            else
+                $listaFestivos[] = $porciones[2] . "-" . $porciones[1] . "-" . $porciones[0];
+        }
+    }    
 }
 
 ?>
@@ -51,9 +82,33 @@ if (!isset($_SESSION['usuario'])) {
             <div id="zonaFestivos">
                 <fieldset>
                     <legend class="textoMenu">Festivos definidos:</legend>
-                    <div id="contenFestivos">
-                        
-                    </div>
+                    
+                    <form id="formularioFestivos" name="formularioFestivos" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                        <div id="contenFestivos">                        
+                        </div>
+                        <div id="contenBontonsErrores">
+                            <div id="zonaInformacionErrores">                
+                                <?php
+                                // Comprobamos si existen errores para mostrar            
+                                if (isset($_SESSION['errores'])) {
+                                    echo "<textarea id='contenedorIncidencias' cols='16' rows='42' readonly>";
+                                        foreach ($_SESSION['errores'] as $miError) {
+                                            echo $miError . "\n";
+                                        }
+                                    echo "</textarea>";
+                                }
+                                ?>                                
+                            </div>                           
+                            <div class="zonaBotones">
+                                <input type="submit" id="botonGrabar" class="botonMenu" name="botonGrabar" value="GRABAR" onclick="mostrarZonaTrabajando()" />
+                            </div>
+                            <div class="zonaBotones">
+                                <input type="submit" id="botonCancelar" class="botonMenu" name="botonCancelar" value="Cancelar" onclick="mostrarZonaTrabajando()" />
+                            </div>
+                        </div>                    
+                    </form>
+                    
+                    <div class="cancelarFlotantes"></div>
                 </fieldset>
                 
             </div>

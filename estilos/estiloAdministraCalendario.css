@@ -137,6 +137,7 @@
 }
 
 #contenFestivos {
+    float: left;
     width: 130px;
     height: 730px;
     background-color: white;
@@ -154,6 +155,79 @@
     font-size: 11pt;
     text-align: center;
 }
+
+
+/*
+*   ZONA INFORMACIÓN DE ERRORES
+*/
+
+#zonaInformacionErrores {
+    width: 120px;
+    height: 550px;
+    background-color: #ffff00;
+}
+
+#contenedorIncidencias {
+    background-color: transparent;
+    resize: none;
+    font-size: 8pt;
+    /*Barras de desplazamiento */    
+    overflow-x: hidden;
+    overflow-y: scroll; 
+}
+
+
+/*
+*   ZONA DE BOTONES FESTIVOS
+*/
+
+#contenBontonsErrores {    
+    float: left;
+    margin-left: 15px;
+}
+
+.zonaBotones {    
+    margin-top: 40px;
+    width: 120px;
+    height: 40px;
+}
+
+.botonMenu {
+    outline: none;
+    width:115px;
+    height:35px;
+    padding-left:0px;
+    text-align: right;
+    font-weight: bold;
+    background-color: aliceblue;        
+    background-repeat: no-repeat;   
+    border-radius: 0.8em;
+}
+
+#botonGrabar {
+    /* Ocultamos la información pero manteniendo su espacio */
+    visibility: hidden;    
+    background-image: url(../imagenes/aceptar_boton.png);    
+}
+
+#botonCancelar {
+    /* Ocultamos la información pero manteniendo su espacio */
+    visibility: hidden;    
+    background-image: url(../imagenes/cancelar_boton.png);
+    background-position: 4px;
+}
+
+/* Para todos los botones */
+.botonMenu:hover {
+  border: 2px solid purple;  
+  color: red;
+}
+
+.botonMenu:focus {  
+  border: 2px solid purple;   
+  color: red;
+}
+
 
 .cancelarFlotantes {
     clear: both;

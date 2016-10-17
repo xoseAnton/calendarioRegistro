@@ -37,6 +37,7 @@ function mostrarFestivos(diaFestivo) {
         var nuevoFestivo = document.createElement('input');
         nuevoFestivo.type = 'text';
         nuevoFestivo.className = 'textoFestivo';
+        nuevoFestivo.name = 'fecha-'+formatoFechaFestivo;
         nuevoFestivo.value = formatoFechaFestivo;
         nuevoFestivo.readOnly = true;
         zona.appendChild(nuevoFestivo);
@@ -108,4 +109,17 @@ function añadeSuprimeFestivo(diaFestivo) {
     
     // Mostramos los festivos resultantes    
     mostrarFestivos(listaFestivos);
+}
+
+// Función para ENSEÑAR LA ZONA DE BOTONES
+function enseñaZonaBotons() {
+     document.getElementById("botonGrabar").style.visibility = "visible"; 
+     document.getElementById("botonCancelar").style.visibility = "visible"; 
+}
+
+// Función para mostrar el campo de errores
+function mostrarErroresGrabar(errores) {    
+    // Mostramos la información de los errores        
+    document.getElementById("textoInformacionErrores").value = errores;
+    document.getElementById("zonaInformacionErrores").style.visibility = "visible"; 
 }
