@@ -5,6 +5,7 @@ function mostrarDiasInhabiles(diaInhabil) {
     }
 }
 
+
 // Función para mostrar el campo de errores
 function mostrarInformacionErrores(errores) {    
     // Mostramos la información de los errores        
@@ -12,12 +13,14 @@ function mostrarInformacionErrores(errores) {
     document.getElementById("zonaInformacionErrores").style.visibility = "visible"; 
 }
 
+
 // Función para limpiar los resultados anteriores
 function limpiarResultadosAnteriores() {
     document.getElementById("textoDespacho").value = "";
     document.getElementById("textoCaducidad").value = "";
     document.getElementById("textoResultadoFinal").value = "";
 }
+
 
 // Función para mostrar los FESTIVOS EN LA PÁGINA
 function mostrarFestivos(diaFestivo) {    
@@ -39,6 +42,21 @@ function mostrarFestivos(diaFestivo) {
         zona.appendChild(nuevoFestivo);
     }    
     
+}
+
+
+// Función para comparar FECHAS - ORDENACIÓN DE FECHAS
+function comparaFechas(formatoFechaMenor, formatoFechaMayor) {
+    var fechaMenor = new Date(formatoFechaMenor);        
+    var fechaMayor = new Date(formatoFechaMayor);        
+    
+    // Ordenamos de menor a mayor
+    if(fechaMenor<fechaMayor)
+        return -1;
+    else if(fechaMenor>fechaMayor)
+        return 1;
+    else // Si las fechas son iguales
+        return 0;
 }
 
 
@@ -82,6 +100,8 @@ function añadeSuprimeFestivo(diaFestivo) {
     else {
         // Introduzco la nueva variable en el array de días festivos
         listaFestivos.push(diaFestivo);        
+        // Ordenamos el array de menor a mayor, con la función definida de comparar fechas
+        listaFestivos.sort(comparaFechas);
         // Marco su casilla correspondiente de color rojo
         document.getElementById("dia-"+diaFestivo).style.backgroundColor = "red";
     }
