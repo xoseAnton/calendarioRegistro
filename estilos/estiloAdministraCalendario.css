@@ -162,6 +162,8 @@
 */
 
 #zonaInformacionErrores {
+    /* Ocultamos la información pero manteniendo su espacio */
+    visibility: hidden; 
     width: 120px;
     height: 550px;
     background-color: #ffff00;
@@ -169,6 +171,7 @@
 
 #contenedorIncidencias {
     background-color: transparent;
+    border-color: red;
     resize: none;
     font-size: 8pt;
     /*Barras de desplazamiento */    

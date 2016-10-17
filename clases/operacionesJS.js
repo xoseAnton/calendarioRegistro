@@ -118,8 +118,15 @@ function enseñaZonaBotons() {
 }
 
 // Función para mostrar el campo de errores
-function mostrarErroresGrabar(errores) {    
-    // Mostramos la información de los errores        
-    document.getElementById("textoInformacionErrores").value = errores;
+function mostrarErroresGrabar() {    
+    // Mostramos la información de los errores            
     document.getElementById("zonaInformacionErrores").style.visibility = "visible"; 
+    // Mostramos el boton cancelar
+    document.getElementById("botonCancelar").style.visibility = "visible"; 
+}
+
+// Función para ocultar el campo de errores
+function ocultarErroresGrabar() {    
+    // Mostramos la información de los errores            
+    document.getElementById("zonaInformacionErrores").style.visibility = "hidden"; 
 }

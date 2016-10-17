@@ -33,7 +33,7 @@ if(isset($_POST['botonGrabar'])) {
     // Variable de control
     $errores = FALSE;
     // Limpiamos la variable de errores
-    unset($_SESSION['errores']);    
+    unset($_SESSION['errores']);
     
     // Recorremos todos datos enviados
     foreach ($_POST as $nombre => $valor) {
@@ -43,13 +43,14 @@ if(isset($_POST['botonGrabar'])) {
             $porciones = explode(" / ", $valor);
             // Comprobamos que la fecha introducida es correcta
             if (!checkdate($porciones[1], $porciones[0], $porciones[2])) { 
-                $_SESSION['errores'][] = "Error en: ".$valor;
+                $_SESSION['errores'][] = "Error en:";
+                $_SESSION['errores'][] = $valor;
                 $errores = TRUE;
             }
             else
                 $listaFestivos[] = $porciones[2] . "-" . $porciones[1] . "-" . $porciones[0];
         }
-    }    
+    }
 }
 
 ?>
@@ -122,6 +123,14 @@ if(isset($_POST['botonGrabar'])) {
         echo "<script>mostrarDiasInhabiles(".json_encode($diasInhabiles).");</script>";        
         // Mostramos los días festivos en la página
         echo "<script>mostrarFestivos(".json_encode($diasInhabiles).");</script>";
+        
+        // Si tenemos errores los mostramos
+        if (isset($_SESSION['errores'])) {
+            echo "<script>mostrarErroresGrabar();</script>";
+            // Borramos la variable errores una vez enseñados
+            unset($_SESSION['errores']);
+        }
+        
         ?>
 
     </body>
