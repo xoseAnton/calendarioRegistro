@@ -292,7 +292,7 @@ class operacionesBD {
 
             // Compruebo el resultado
             if (isset($resultado)) {
-               $_SESSION['incidencias'][] = "Antiguos Borrados!";
+               $_SESSION['incidenciasGrabar'][] = "Antiguos Borrados!";
                
                // Recorro todos los festivos que queremos añadir
                foreach ($listaFestivos as $miFestivo) {
@@ -309,8 +309,8 @@ class operacionesBD {
                    // Compruebo el resultado
                    if ($resultado === 1 || $resultado === "1") {
                         // Se crea nueva incidencia informando sobre la insercción del festivo
-                        $_SESSION['incidencias'][] = "Creado:";
-                        $_SESSION['incidencias'][] = date_format($festivo, "d/m/Y");
+                        $_SESSION['incidenciasGrabar'][] = "Creado:";
+                        $_SESSION['incidenciasGrabar'][] = date_format($festivo, "d/m/Y");
                         
                     } else {
                         // Hubo un error al añadir el nuevo diario a la lista de diarios

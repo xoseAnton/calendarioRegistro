@@ -1,0 +1,295 @@
+
+
+/*
+* BLOQUE DE INFORMACION
+*/
+
+#bloqueInformacion {
+    width: 1250px;
+    margin: 0 auto;   
+    padding: 0;
+}
+
+#botonInformacion {
+    float: right;
+    width:100px;
+    height:25px;
+    padding-left:0px;
+    text-align: right;
+    font-weight: bold;
+    background-image: url(../imagenes/acercaDe.png);    
+    background-color: transparent;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;     
+    border-radius: 0.8em;
+}
+
+#contenedorInformacion {
+    display: none;
+    position: absolute;
+    margin-left: 900px;
+    margin-top: 30px;
+    width: 400px;
+    height: 350px;
+    background-image: url(../imagenes/notas.png);     
+    background-color: transparent;
+    background-size: 100%; 
+    background-repeat: no-repeat; 
+}
+
+#contenedorTextoIndormacion {
+    margin-top: 100px;
+    margin-left: 30px;
+    width: 300px;
+    font-size: 11pt;    
+    font-weight: bold;
+}
+
+.textoInformacion {
+    color: blue;
+}
+
+.textoTituloInformacion{
+    color: purple;    
+}
+
+#botonInformacion:hover {
+    background-color: purple;        
+}
+
+#botonInformacion:hover ~ #contenedorInformacion {
+    display: block;
+}
+
+
+/* zona MUESTRA - TRABAJANDO */
+
+#zonaTrabajando {
+    float: left;
+    position: absolute;
+    height: 100%;
+    width: 100%;    
+}
+
+#contenImgTrabaja {
+    width: 100%;
+}
+
+#contenImgTrabaja img {
+    /* Para centrar la imagen */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#textoZonaTrabajando { 
+    margin-top: 100px;
+    width: 100%;
+    color: purple;
+    font-size: 22pt;
+    font-family: Arial;
+    text-transform: uppercase;    
+    font-weight:bold;
+    text-align: center;    
+    padding: 10px;
+}
+
+
+/*
+*   BLOQUE PARA PROGRAMA
+*/
+
+#zonaPrograma {
+    display: none;
+    margin: 0 auto;
+    width: 364px;
+    background-color: #eee;
+    border: 4px solid purple;
+}
+
+
+/*
+* BLOQUE AÑO SIGUIENTE
+*/
+
+#zonaAñoNuevo {
+    margin: 5px 10px;
+    border: 2px solid purple;
+}
+
+
+.textoMenu {
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;    
+    color: purple;
+}
+
+.bloqueAñoNuevo {
+    height: 60px;
+    margin-bottom: 5px;
+}
+
+
+#bloqueZonaResultadoFinal {
+    border: 1px solid purple;
+    background-color: #F56C6E;
+}
+
+.textoBloquesResultado {
+    text-align: center;
+    font-size: 10pt;
+    font-family: Courier;
+    font-weight: bold;
+    padding: 7px 0;
+}
+
+.textoResultado {
+    text-align: center;
+    color: blue;
+    font-size: 14pt;
+    font-family: Courier;
+    font-weight: bold;    
+    border: none;
+    width: 150px;
+    height: 25px;
+    background-color: transparent;
+}
+
+#textoBloqueResultadoFinal {
+    font-size: 13pt;
+}
+
+
+/* Para todos los botones */
+
+.botonMenu {
+    outline: none;
+    width:128px;
+    height:30px;
+    padding-left:0px;    
+    font-weight: bold;
+    color: blue;
+    background-color: aliceblue;            
+    border-radius: 0.8em;
+}
+
+.botonMenu:hover {
+  border: 2px solid purple;  
+  color: red;
+}
+
+.botonMenu:focus {  
+  border: 2px solid purple;   
+  color: red;
+}
+
+
+/* ZONA PARA MOSTRAR INFORMACIÓN DE ERRORES */
+#zonaInformacionErrores {
+    /* Ocultamos la información pero manteniendo su espacio */
+    visibility: hidden;
+    margin: 5px 0;
+    width: 364px;
+    height: 25px;
+}
+
+#textoInformacionErrores {
+    width: 364px;
+    height: 25px;
+    text-align: center;
+    border: none;
+    font-family: Verdana, Arial, sans-serif; 
+    font-weight: bold;
+    font-size: 9pt;
+    color: red;
+    background-color : #ffff00;    
+}
+
+
+/*
+*   ZONA PARA VISUALIZAR LOS CALENDARIOS
+*/
+
+#zonaVisualizaCalendario {
+    margin-bottom: 10px;
+}
+
+#zonaCalendario {    
+    margin: 0px 10px;
+    height: 60px;    
+    background-color: bisque;
+    border: 2px solid purple;
+}
+
+.bloqueCalendario {
+    float: left;
+    width: 50%;
+    height: 45px;
+}
+
+#calendario {
+    float: left;
+    margin: 2px 0 0 10px;
+    width: 90px;    
+    height: 40px;   
+    font-size: 18pt;
+    font-weight: bold;
+}
+
+#botonVisualizaCalendario {
+    float: right;
+    margin: 8px 10px 0 0;
+}
+
+/*
+*   ZONA PARA ADMINISTRAR CALENDARIO
+*/
+
+#zonaAdministrarCalendario{
+    margin: 10px 10px;
+    height: 45px;    
+    background-color: #eee;    
+    border: 2px solid purple;
+}
+
+.zonaAdministrar {
+    float: left;
+    width: 50%;    
+}
+
+#botonAdministraCalendario { 
+    width: 110px;
+    background-image: url(../imagenes/administrar_boton.png);    
+    background-repeat: no-repeat;
+    background-position-x: 7px;
+    text-align: right;
+    color: black;
+}
+
+#botonAdministraCalendario:hover, #botonAdministraCalendario:focus {
+    color: red;
+    border: 2px solid red;
+}
+
+#botonAñadirAño { 
+    float: right;
+    width: 110px;
+    background-image: url(../imagenes/boton_añadir.png);    
+    background-repeat: no-repeat;    
+    text-align: right;
+    color: black;
+}
+
+#botonAñadirAño:hover, #botonAñadirAño:focus {
+    color: red;
+    border: 2px solid red;
+}
+
+
+/* Para cancelar espacios en Flotantes */
+
+.cancelarFlotantes {
+    clear: both;
+}

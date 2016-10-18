@@ -136,9 +136,9 @@ if(isset($_POST['botonGrabar'])) {
                                 <div id="zonaInformacionResultados">                
                                     <?php
                                     // Comprobamos si existen errores para mostrar            
-                                    if (isset($_SESSION['incidencias'])) {
+                                    if (isset($_SESSION['incidenciasGrabar'])) {
                                         echo "<textarea id='contenedorIncidencias' cols='16' rows='21' readonly>";
-                                        foreach ($_SESSION['incidencias'] as $miIncidencia) {
+                                        foreach ($_SESSION['incidenciasGrabar'] as $miIncidencia) {
                                             echo $miIncidencia . "\n";
                                         }
                                         echo "</textarea>";
@@ -181,10 +181,10 @@ if(isset($_POST['botonGrabar'])) {
         }
         
         // Si tenemos incidencias las mostramos
-        if (isset($_SESSION['incidencias'])) {
+        if (isset($_SESSION['incidenciasGrabar'])) {
             echo "<script>mostrarIncidencias();</script>";
             // Borramos la variable errores una vez enseñados
-            unset($_SESSION['incidencias']);
+            unset($_SESSION['incidenciasGrabar']);
         }
         
         ?>

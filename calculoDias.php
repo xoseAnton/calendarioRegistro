@@ -126,6 +126,11 @@ if (isset($_POST['botonAdministraCalendario']) && $_SESSION['rolUsuario'] == 0) 
  
 }
 
+// Comprobamos que queremos DEFINIR UN NUEVO AÑO
+if (isset($_POST['botonAñadirAño']) && $_SESSION['rolUsuario'] == 0) {        
+    // Redirigimos a la pantalla para crear el calendario
+    header("Location: nuevoCalendario.php"); 
+}
 
 ?>
 

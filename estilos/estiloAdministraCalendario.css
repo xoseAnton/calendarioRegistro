@@ -95,6 +95,13 @@
 
 
 /*
+*   zona PROGRAMA
+*/
+#zonaPrograma {
+    display: none;
+}
+
+/*
 *   BLOQUE TÍTULO
 */
 #zonaTitulo {
