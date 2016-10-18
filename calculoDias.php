@@ -146,7 +146,30 @@ and open the template in the editor.
         <!-- Incluimos el archivo de operaciones con javaScript -->        
         <script type="text/javascript" src="clases/operacionesJS.js"></script>
     </head>
-    <body>
+    <body onload="ocultarZonaTrabajando()">
+        
+        <!-- Zona de Información -->
+        <div id="bloqueInformacion">
+            <div id="contenedorBotonInformacion">
+                <input type="button" id="botonInformacion" name="botonInformacion" value="" />
+                 <div id="contenedorInformacion">
+                     <div id="contenedorTextoIndormacion">
+                         <?php mostrar::mostrarInformacion()?>                         
+                     </div>
+                </div>
+            </div>           
+            <div class="cancelarFlotantes"></div>
+        </div>
+        
+        <!-- Zona Trabajando -->
+        <div id="zonaTrabajando">
+            <div id="contenImgTrabaja">
+                <div id="textoZonaTrabajando">¡ RECOPILANDO INFORMACION !</div>
+                <img src="imagenes/buscando.png" />
+            </div>
+        </div>
+        
+        <!-- Zona de Programa -->
         <div id="zonaPrograma">            
             
             <fieldset id="zonaCalculoDias">
@@ -170,7 +193,7 @@ and open the template in the editor.
                             <div class="cancelarFlotantes"></div>
                         </div>
                         <div class="bloqueCalculoZona">
-                            <input type="submit" id="botonCalcula" class="botonMenu" name="botonCalcula" value="CALCULA" title="Calcula la fecha final según los días introducidos"/>
+                            <input type="submit" id="botonCalcula" class="botonMenu" name="botonCalcula" value="CALCULA" onclick="mostrarZonaTrabajando()" title="Calcula la fecha final según los días introducidos"/>
                         </div>
                     </form>                    
                 </div>

@@ -127,6 +127,41 @@ function mostrarErroresGrabar() {
 
 // Función para ocultar el campo de errores
 function ocultarErroresGrabar() {    
-    // Mostramos la información de los errores            
+    // Ocultamos la información de los errores            
     document.getElementById("zonaInformacionErrores").style.visibility = "hidden"; 
+}
+
+
+// Función para mostrar el campo de INCIDENCIAS
+function mostrarIncidencias() {    
+    // Mostramos la información de las incidencias
+    document.getElementById("zonaInformacionResultados").style.visibility = "visible"; 
+    // Mostramos el boton cancelar
+    document.getElementById("botonCancelar").style.visibility = "visible"; 
+}
+
+
+// Función para ocultar el campo de INCIDENCIAS
+function ocultarIncidencias() {    
+    // Ocultamos la información de las INCIDENCIAS
+    document.getElementById("zonaInformacionResultados").style.visibility = "hidden"; 
+}
+
+// Función para ocultar la zona de "ESPERE-TRABAJANDO" y mostrar datos.
+function ocultarZonaTrabajando(){
+    // Ocultamos la zona "ESPERE-TRABAJANDO"
+    document.getElementById("zonaTrabajando").style.display = "none";
+    
+    // Mostramos la zona de trabajo    
+    document.getElementById("zonaPrograma").style.display = "block";
+}
+
+// Función para mostrar la zona de "ESPERE-TRABAJANDO" y ocultar datos.
+function mostrarZonaTrabajando(){
+    
+    // Ocultamos la zona de trabajo
+    document.getElementById("zonaPrograma").style.display = "none";
+    
+    // Ocultamos datos y mostramos zona de "ESPERE-TRABAJANDO"
+    document.getElementById("zonaTrabajando").style.display = "block";
 }

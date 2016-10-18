@@ -1,9 +1,106 @@
 
+
+/*
+* BLOQUE DE INFORMACION
+*/
+
+#bloqueInformacion {
+    width: 1250px;
+    margin: 0 auto;   
+    padding: 0;
+}
+
+#botonInformacion {
+    float: right;
+    width:100px;
+    height:25px;
+    padding-left:0px;
+    text-align: right;
+    font-weight: bold;
+    background-image: url(../imagenes/acercaDe.png);    
+    background-color: transparent;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;     
+    border-radius: 0.8em;
+}
+
+#contenedorInformacion {
+    display: none;
+    position: absolute;
+    margin-left: 900px;
+    margin-top: 30px;
+    width: 400px;
+    height: 350px;
+    background-image: url(../imagenes/notas.png);     
+    background-color: transparent;
+    background-size: 100%; 
+    background-repeat: no-repeat; 
+}
+
+#contenedorTextoIndormacion {
+    margin-top: 100px;
+    margin-left: 30px;
+    width: 300px;
+    font-size: 11pt;    
+    font-weight: bold;
+}
+
+.textoInformacion {
+    color: blue;
+}
+
+.textoTituloInformacion{
+    color: purple;    
+}
+
+#botonInformacion:hover {
+    background-color: purple;        
+}
+
+#botonInformacion:hover ~ #contenedorInformacion {
+    display: block;
+}
+
+
+/* zona MUESTRA - TRABAJANDO */
+
+#zonaTrabajando {
+    float: left;
+    position: absolute;
+    height: 100%;
+    width: 100%;    
+}
+
+#contenImgTrabaja {
+    width: 100%;
+}
+
+#contenImgTrabaja img {
+    /* Para centrar la imagen */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#textoZonaTrabajando { 
+    margin-top: 100px;
+    width: 100%;
+    color: purple;
+    font-size: 22pt;
+    font-family: Arial;
+    text-transform: uppercase;    
+    font-weight:bold;
+    text-align: center;    
+    padding: 10px;
+}
+
+
 /*
 *   BLOQUE PARA PROGRAMA
 */
 
 #zonaPrograma {
+    display: none;
     margin: 0 auto;
     width: 364px;
     background-color: #eee;

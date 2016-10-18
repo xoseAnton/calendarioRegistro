@@ -270,5 +270,63 @@ class operacionesBD {
         return $añosDefinidos;
     }
     
+    
+    // Función para encontrar festivos de un AÑO DADO
+    public static function guardarNuevosFestivos($año, $listaFestivos) {        
+        
+        if ($año != "" && !empty($listaFestivos)) {
+            // Primero borramos los festivos definidos anteriormente
+            // Creamos el primer dia del año
+            $primerDia = date_create(date($año . "-" . "1" . "-" . "1"));
+            $formatoPrimerDia = date_format($primerDia, "Y-m-d");
+
+            // Creamos el último dia del año
+            $ultimoDia = date_create(date($año . "-" . "12" . "-" . "31"));
+            $formatoUltimoDia = date_format($ultimoDia, "Y-m-d");
+
+            // Comando para la consulta
+            $sql = "DELETE FROM festivosregistro WHERE festivo >= '" . $formatoPrimerDia . "' AND festivo <= '" . $formatoUltimoDia . "'";
+
+            // Ejecuto la consulta
+            $resultado = self::ejecutaConsulta($sql, "negreira");            
+
+            // Compruebo el resultado
+            if (isset($resultado)) {
+               $_SESSION['incidencias'][] = "Antiguos Borrados!";
+               
+               // Recorro todos los festivos que queremos añadir
+               foreach ($listaFestivos as $miFestivo) {
+                   // Creo el formato adecuado de fecha para cargar en la base de datos
+                   $festivo = date_create(date($miFestivo));
+                   $formatoFestivo = date_format($festivo, "Y-m-d");
+                   
+                   // Creo la consulta preparada
+                   $sql = "INSERT INTO `festivosregistro` (`festivo`) VALUES (?)";                   
+                   $arrayParametros = array($formatoFestivo);
+                   
+                   $resultado = self::consultaPreparada($sql, $arrayParametros, 'ACCION', 'negreira');
+                   
+                   // Compruebo el resultado
+                   if ($resultado === 1 || $resultado === "1") {
+                        // Se crea nueva incidencia informando sobre la insercción del festivo
+                        $_SESSION['incidencias'][] = "Creado:";
+                        $_SESSION['incidencias'][] = date_format($festivo, "d/m/Y");
+                        
+                    } else {
+                        // Hubo un error al añadir el nuevo diario a la lista de diarios
+                        // Inicializamos la variable errores
+                        $_SESSION['errores'][] = "Error:";
+                        $_SESSION['errores'][] = date_format($festivo, "d/m/Y");
+                    }
+                }
+            }
+            else
+                $_SESSION['errores'][] = "Error al borrar los festivos anteriores!";
+        } else {
+            $_SESSION['errores'][] = "Año no definido:";
+            $_SESSION['errores'][] = $año;
+        }
+    }
+
 }
 ?>

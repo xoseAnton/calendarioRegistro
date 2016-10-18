@@ -181,7 +181,7 @@ class mostrar {
 
                         // Condición para establecer las celdas vacias
                         if (($posicionDia == $posicionSemana) && ($mesActual == $mes)) {
-                            echo "<input type='text' id='dia-" . date_format($fechaActual, "Y-n-j") . "' class='diaSemana' value='" . $diaActual . "' readonly ondblclick='añadeSuprimeFestivo(".json_encode(date_format($fechaActual, "Y-n-j")).", enseñaZonaBotons(), ocultarErroresGrabar())'>";
+                            echo "<input type='text' id='dia-" . date_format($fechaActual, "Y-n-j") . "' class='diaSemana' value='" . $diaActual . "' readonly ondblclick='añadeSuprimeFestivo(".json_encode(date_format($fechaActual, "Y-n-j")).", enseñaZonaBotons(), ocultarErroresGrabar(), ocultarIncidencias())'>";
                             // Adelantamos un dia a la fecha actual
                             date_add($fechaActual, date_interval_create_from_date_string("+1 days"));
                         } else {
