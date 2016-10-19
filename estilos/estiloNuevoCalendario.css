@@ -126,39 +126,27 @@
     color: purple;
 }
 
-.bloqueAñoNuevo {
+#bloqueAñoNuevo {
+    width: 200px;
     height: 60px;
-    margin-bottom: 5px;
-}
-
-
-#bloqueZonaResultadoFinal {
+    margin-left: auto;
+    margin-right: auto;    
     border: 1px solid purple;
-    background-color: #F56C6E;
+    background-color: white;
 }
 
-.textoBloquesResultado {
-    text-align: center;
-    font-size: 10pt;
-    font-family: Courier;
-    font-weight: bold;
-    padding: 7px 0;
-}
 
-.textoResultado {
+#textoAñoNuevo {
+    width: 100%;
+    height: 100%;
     text-align: center;
     color: blue;
-    font-size: 14pt;
+    font-size: 30pt;
     font-family: Courier;
     font-weight: bold;    
     border: none;
-    width: 150px;
-    height: 25px;
     background-color: transparent;
-}
-
-#textoBloqueResultadoFinal {
-    font-size: 13pt;
+    
 }
 
 
@@ -212,42 +200,42 @@
 *   ZONA PARA VISUALIZAR LOS CALENDARIOS
 */
 
-#zonaVisualizaCalendario {
+#zonaOpcionesAñoNuevo {
     margin-bottom: 10px;
 }
 
-#zonaCalendario {    
+#zonaOpciones {
     margin: 0px 10px;
-    height: 60px;    
+    height: 100px;    
     background-color: bisque;
     border: 2px solid purple;
 }
 
-.bloqueCalendario {
-    float: left;
-    width: 50%;
-    height: 45px;
+.bloqueSelecOpciones {    
+    width: 320px;
+    height: 30px;
 }
 
-#calendario {
-    float: left;
-    margin: 2px 0 0 10px;
-    width: 90px;    
-    height: 40px;   
-    font-size: 18pt;
+.textoBloqueOpciones {        
+    float: left;    
+    margin: 5px 0 0 5px;
+    font-family: Verdana, Arial, sans-serif; 
     font-weight: bold;
+    font-size: 11pt;
 }
 
-#botonVisualizaCalendario {
-    float: right;
-    margin: 8px 10px 0 0;
+.selecOpcion {
+    float: left;
+    width: 15px;
+    height: 25px;
 }
+
 
 /*
 *   ZONA PARA ADMINISTRAR CALENDARIO
 */
 
-#zonaAdministrarCalendario{
+#zonaAdministrarAñoNuevo{
     margin: 10px 10px;
     height: 45px;    
     background-color: #eee;    
@@ -256,33 +244,38 @@
 
 .zonaAdministrar {
     float: left;
+    margin-top: 8px;
     width: 50%;    
 }
 
-#botonAdministraCalendario { 
+#botonCrearAñoNuevo { 
     width: 110px;
-    background-image: url(../imagenes/administrar_boton.png);    
-    background-repeat: no-repeat;
-    background-position-x: 7px;
-    text-align: right;
-    color: black;
-}
-
-#botonAdministraCalendario:hover, #botonAdministraCalendario:focus {
-    color: red;
-    border: 2px solid red;
-}
-
-#botonAñadirAño { 
-    float: right;
-    width: 110px;
+    height: 33px;
     background-image: url(../imagenes/boton_añadir.png);    
     background-repeat: no-repeat;    
     text-align: right;
     color: black;
 }
 
-#botonAñadirAño:hover, #botonAñadirAño:focus {
+#botonCrearAñoNuevo:hover, #botonCrearAñoNuevo:focus {
+    color: red;
+    border: 2px solid red;
+}
+
+
+#botonCancelarAño { 
+    float: right;
+    width: 110px;
+    height: 33px;
+    background-image: url(../imagenes/cancelar_boton.png);
+    background-position-x: 2px;
+    background-repeat: no-repeat;    
+    text-align: right;
+    color: black;
+}
+
+
+#botonCancelarAño:hover, #botonCancelarAño:focus {
     color: red;
     border: 2px solid red;
 }

@@ -327,6 +327,29 @@ class operacionesBD {
             $_SESSION['errores'][] = $año;
         }
     }
+    
+    
+    // Función que devuelve el ULTIMO AÑO DEFINIDO
+    public static function ultimoAñoDefinidos() {
+        
+        // Comando para la consulta
+        $sql = "SELECT MAX(anos) FROM anosdefinidos";
+
+        // Ejecuto la consulta
+        $resultado = self::ejecutaConsulta($sql, "negreira");
+
+        // Variable que contendrá el último año definido
+        $ultimoAño = "";
+        
+        // Compruebo el resultado
+        if (isset($resultado)) {
+            // Recupero el valor obtenido
+            $row = $resultado->fetch();
+            $ultimoAño = $row[0];
+        }
+        // Retorno un array de objetos de la clase Usuario
+        return $ultimoAño;
+    }
 
 }
 ?>

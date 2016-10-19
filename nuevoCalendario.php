@@ -10,14 +10,34 @@ require_once '/./clases/mostrar.php';
 // Establecemos por defecto la zona horaria
 date_default_timezone_set('Europe/Berlin');
 
+
 // Comprobamos que el usuario está identificado y tiene un rol adecuado 
-if (!isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] != 0) {
+if (isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] == 0) {
+    // Recuperamos el último año definido
+    $ultimoAñoDefinido = operacionesBD::ultimoAñoDefinidos();
+    if($ultimoAñoDefinido != "") {
+        $_SESSION['nuevoAño'] = ((int)$ultimoAñoDefinido) + 1;
+    }
+        
+}else {
     // Borramos los datos de la sesión
     session_unset();
     // Redirigimos a la pantalla inicial
     header("Location: index.php");
 }
 
+
+// Comprobamos si queremos crear un nuevo año
+if(isset($_POST['botonCrearAñoNuevo'])) {
+    /* Realizamos la comprobación de que el año mostrado es realmente
+     * el último de la base de datos
+     */
+    $ultimoAñoDefinido = operacionesBD::ultimoAñoDefinidos();
+    if($ultimoAñoDefinido == ($_SESSION['nuevoAño']-1)){
+        
+        
+    }
+}
 ?>
 
 
@@ -65,12 +85,9 @@ and open the template in the editor.
 
             <fieldset id="zonaAñoNuevo">
                 <legend class="textoMenu">Nuevo año</legend>
-
-                <div class="bloqueAñoNuevo">
-                    <div id="bloqueZonaResultadoFinal">
-                        <div id="textoBloqueResultadoFinal" class="textoBloquesResultado">RESULTADO</div>
-                        <input type="text" id="textoResultadoFinal" class="textoResultado" name="textoResultadoFinal" value="<?php if (isset($_SESSION['resultadoCalculo'])) echo $_SESSION['resultadoCalculo']; ?>" readonly />
-                    </div>
+                
+                <div id="bloqueAñoNuevo">
+                    <input type="text" id="textoAñoNuevo" name="textoResultadoFinal" value="<?php if (isset($_SESSION['nuevoAño'])) echo $_SESSION['nuevoAño']; ?>" readonly />                    
                 </div>               
             </fieldset>
 
@@ -79,60 +96,52 @@ and open the template in the editor.
             </div>
 
             <?php
-// Comprobamos si existen errores para mostrar            
+            // Comprobamos si existen errores para mostrar            
             if (isset($_SESSION['errores'])) {
                 // Enseñamos la zona para mostrar lo errores
                 echo "<script>mostrarInformacionErrores(" . json_encode($_SESSION['errores']) . ");</script>";
             }
             ?>
 
-            <div id="zonaVisualizaCalendario">
+            <div id="zonaOpcionesAñoNuevo">
 
-                <form id="formularioCalendario" name="formularioCalendario" action="<?php echo $_SERVER['PHP_SELF']; ?>" target="_blank" method="post" >                        
+                <form id="formularioAñoNuevo" name="formularioAñoNuevo" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" >
+                    
+                    <fieldset id="zonaOpciones">
+                        <legend class="textoMenu">Opciones</legend>
 
-                    <fieldset id="zonaCalendario">
-                        <legend class="textoMenu">Calendario</legend>
-
-                        <div class="bloqueCalendario">
-                            <select id="calendario" name="calendario" required>
-                                <?php
-                                $listaCalendarios = unserialize($_SESSION['añosDefinidos']);
-
-                                // Si tenemos años definidos los recorremos todos
-                                if (!empty($listaCalendarios)) {
-                                    foreach ($listaCalendarios as $calendario) {
-                                        echo "<option value='" . $calendario . "'>" . $calendario . "</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
-                        </div>
-
-                        <div class="bloqueCalendario">
-                            <input type="submit" id="botonVisualizaCalendario" class="botonMenu" name="botonVisualizaCalendario" value="VIZUALIZAR" title="Muestra el calendario seleccionado con sus festivos"/>
-                        </div>
+                        <div class="bloqueSelecOpciones">                            
+                            <input type="checkbox" id="festivosGenerales" class="selecOpcion" name="festivosGenerales" checked />
+                            <div class="textoBloqueOpciones">Festivos Generales.</div>
+                            <div class="cancelarFlotantes"></div>
+                        </div>                        
                         <div class="cancelarFlotantes"></div>
-
-
+                        <div class="bloqueSelecOpciones">                            
+                            <input type="checkbox" id="festivoSabados" class="selecOpcion" name="festivoSabado" checked />
+                            <div class="textoBloqueOpciones">Sábados festivos.</div>
+                            <div class="cancelarFlotantes"></div>
+                        </div>                        
+                        <div class="cancelarFlotantes"></div>
+                        <div class="bloqueSelecOpciones">                            
+                            <input type="checkbox" id="festivoDomigo" class="selecOpcion" name="festivoDomingo" checked />
+                            <div class="textoBloqueOpciones">Domingos festivos.</div>
+                            <div class="cancelarFlotantes"></div>
+                        </div>                        
 
                     </fieldset>
 
-                    <?php
-// Si tenemos el rol adecuado mostramos la posibilidad de ADMINISTRAR LOS FESTIVOS
-                    if ($_SESSION['rolUsuario'] == 0) {
-                        echo "<fieldset id='zonaAdministrarCalendario'>";
-                        echo "<legend class='textoMenu'>Administrar</legend>";
-                        echo "<div class = 'zonaAdministrar'>";
-                        echo "<input type = 'submit' id = 'botonAdministraCalendario' class='botonMenu' name = 'botonAdministraCalendario' value = 'Festivos' title = 'Administra los festivos del calendario seleccionado'/>";
-                        echo "</div>";
-                        echo "<div class = 'zonaAdministrar'>";
-                        echo "<input type = 'submit' id = 'botonAñadirAño' class='botonMenu' name = 'botonAñadirAño' value = 'Nuevo año' title = 'Añade un nuevo año al calendario'/>";
-                        echo "</div>";
-                        echo "<div class='cancelarFlotantes'></div>";
-                        echo "</fieldset>";
-                    }
-                    ?>
-
+                    <!-- Zona de BOTONES -->
+                    
+                    <fieldset id="zonaAdministrarAñoNuevo">                        
+                        <div class = "zonaAdministrar">
+                            <input type = "submit" id = "botonCrearAñoNuevo" class="botonMenu" name = "botonCrearAñoNuevo" value = "Crear Año" title = "Crea un nuevo año con festivos"/>
+                        </div>
+                        <div class = "zonaAdministrar">
+                            <input type = "button" id = "botonCancelarAño" class="botonMenu" name = "botonCancelarAño" value = "Cerrar" onclick="window.close()"title = "Cancela la creación de un nuevo año"/>
+                        </div>
+                        <div class="cancelarFlotantes"></div>
+                    </fieldset>
+                    
                 </form>
             </div>
 
