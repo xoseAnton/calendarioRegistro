@@ -350,6 +350,54 @@ class operacionesBD {
         // Retorno un array de objetos de la clase Usuario
         return $ultimoAño;
     }
+    
+    // Función que devuelve el ULTIMO AÑO DEFINIDO
+    public static function insertarAñoNuevo($añoNuevo) {
+        // Variable que devolverá la función
+        $resultado = TRUE;
+        
+        // Compruebo si esta identificado y tiene permiso.
+        if (isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] == 0) {
+            // Creo la consulta preparada
+            $sql = "INSERT INTO `anosdefinidos` (`anos`) VALUES (?)";
+            $arrayParametros = array($añoNuevo);
+
+            $resultado = self::consultaPreparada($sql, $arrayParametros, 'ACCION', 'negreira');
+
+            // Compruebo el resultado
+            if ($resultado === 1 || $resultado === "1") {
+                $resultado = TRUE;
+            } else {
+                $resultado = FALSE;
+            }
+        }
+        // Devolvemos el resultado
+        return $resultado;
+    }
+    
+     // Función que INSERTA los festivos en el nuevo año creado
+    public static function insertarFestivos($añoNuevo, $opciones) {
+        // Variable que devolverá la función
+        $resultado = TRUE;
+        
+        // Compruebo si se quieren introducir los festivos generales
+        
+        // Compruebo si esta identificado y tiene permiso.
+        if (isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] == 0) {
+            // Creo la consulta preparada
+            $sql = "INSERT INTO `anosdefinidos` (`anos`) VALUES (?)";
+            $arrayParametros = array($añoNuevo);
+
+            $resultado = self::consultaPreparada($sql, $arrayParametros, 'ACCION', 'negreira');
+
+            // Compruebo el resultado
+            if ($resultado === 1 || $resultado === "1") {
+                $resultado = TRUE;
+            } else {
+                $resultado = FALSE;
+            }
+        }
+    }
 
 }
 ?>

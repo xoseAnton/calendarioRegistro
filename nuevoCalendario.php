@@ -34,8 +34,38 @@ if(isset($_POST['botonCrearAñoNuevo'])) {
      */
     $ultimoAñoDefinido = operacionesBD::ultimoAñoDefinidos();
     if($ultimoAñoDefinido == ($_SESSION['nuevoAño']-1)){
-        
-        
+        //Insertamos el nuevo año como definido
+        if(operacionesBD::insertarAñoNuevo($_SESSION['nuevoAño'])) {
+            // Cargamos las opciones seleccionadas
+            $opciones = array();
+            // Comprobamos si queremos cargar los festivos generales
+            if(isset($_POST['festivosGenerales']))
+                $opciones['festivosGenerales'] = array(TRUE);                        
+            else
+                $opciones['festivosGenerales'] = array(FALSE);
+            
+            // Comprobamos si queremos cargar los sábados
+            if(isset($_POST['festivoSabado']))
+                $opciones['festivoSabado'] = array(TRUE);                        
+            else
+                $opciones['festivoSabado'] = array(FALSE);
+            
+            // Comprobamos si queremos cargar los domingos
+            if(isset($_POST['festivoDomingo']))
+                $opciones['festivoDomingo'] = array(TRUE);                        
+            else
+                $opciones['festivoDomingo'] = array(FALSE);
+            
+            // Insertamos los festivos en el calendario
+            
+            
+        }
+        else {
+            $_SESSION['errores'] = "Error: No se pudo guardar como definido.";
+        }
+    }
+    else {
+        $_SESSION['errores'] = "Error: El año nuevo no es consecutivo.";
     }
 }
 ?>
@@ -100,6 +130,8 @@ and open the template in the editor.
             if (isset($_SESSION['errores'])) {
                 // Enseñamos la zona para mostrar lo errores
                 echo "<script>mostrarInformacionErrores(" . json_encode($_SESSION['errores']) . ");</script>";
+                // Mostrados los errores los borramos
+                unset($_SESSION['errores']);
             }
             ?>
 
