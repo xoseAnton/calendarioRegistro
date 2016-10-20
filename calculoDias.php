@@ -272,10 +272,11 @@ and open the template in the editor.
 
 
                     </fieldset>
+                    
 
                     <?php                    
                     // Si tenemos el rol adecuado mostramos la posibilidad de ADMINISTRAR LOS FESTIVOS
-                    if ($_SESSION['rolUsuario'] == 0) {
+                    if ($_SESSION['rolUsuario'] == 0) {                    
                         echo "<fieldset id='zonaAdministrarCalendario'>";
                             echo "<legend class='textoMenu'>Administrar</legend>";
                             echo "<div class = 'zonaAdministrar'>";
@@ -287,9 +288,9 @@ and open the template in the editor.
                             echo "<div class='cancelarFlotantes'></div>";
                         echo "</fieldset>";
                     }
-                    ?>
-
-                </form>
+                    ?>                
+            </form>
+                
             </div>
             
             

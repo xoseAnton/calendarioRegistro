@@ -36,29 +36,34 @@ if(isset($_POST['botonCrearAñoNuevo'])) {
     if($ultimoAñoDefinido == ($_SESSION['nuevoAño']-1)){
         //Insertamos el nuevo año como definido
         if(operacionesBD::insertarAñoNuevo($_SESSION['nuevoAño'])) {
+            
+            // Insertado el nuevo año (vacio, sin festivos) cargamos los nuevos valores            
+            $_SESSION['añosDefinidos'] = serialize(operacionesBD::listarAñosDefinidos());
+            
             // Cargamos las opciones seleccionadas
             $opciones = array();
             // Comprobamos si queremos cargar los festivos generales
-            if(isset($_POST['festivosGenerales']))
-                $opciones['festivosGenerales'] = array(TRUE);                        
+            if(isset($_POST['festivosGenerales']))                
+                $opciones['festivosGenerales'] = TRUE;
             else
-                $opciones['festivosGenerales'] = array(FALSE);
+                $opciones['festivosGenerales'] = FALSE;
             
             // Comprobamos si queremos cargar los sábados
             if(isset($_POST['festivoSabado']))
-                $opciones['festivoSabado'] = array(TRUE);                        
+                $opciones['festivoSabado'] = TRUE;
             else
-                $opciones['festivoSabado'] = array(FALSE);
+                $opciones['festivoSabado'] = FALSE;
             
             // Comprobamos si queremos cargar los domingos
             if(isset($_POST['festivoDomingo']))
-                $opciones['festivoDomingo'] = array(TRUE);                        
+                $opciones['festivoDomingo'] = TRUE;
             else
-                $opciones['festivoDomingo'] = array(FALSE);
-            
+                $opciones['festivoDomingo'] = FALSE;
+                        
             // Insertamos los festivos en el calendario
-            
-            
+            if(operacionesBD::insertarFestivos($_SESSION['nuevoAño'], $opciones)) {
+                $_SESSION['errores'] = "Festivos creados CORRECTAMENTE!";
+            } 
         }
         else {
             $_SESSION['errores'] = "Error: No se pudo guardar como definido.";
@@ -166,7 +171,7 @@ and open the template in the editor.
                     
                     <fieldset id="zonaAdministrarAñoNuevo">                        
                         <div class = "zonaAdministrar">
-                            <input type = "submit" id = "botonCrearAñoNuevo" class="botonMenu" name = "botonCrearAñoNuevo" value = "Crear Año" title = "Crea un nuevo año con festivos"/>
+                            <input type = "submit" id = "botonCrearAñoNuevo" class="botonMenu" name = "botonCrearAñoNuevo" value = "Crear Año" onclick="mostrarZonaTrabajando()" title = "Crea un nuevo año con festivos"/>
                         </div>
                         <div class = "zonaAdministrar">
                             <input type = "button" id = "botonCancelarAño" class="botonMenu" name = "botonCancelarAño" value = "Cerrar" onclick="window.close()"title = "Cancela la creación de un nuevo año"/>

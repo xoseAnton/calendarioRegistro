@@ -354,7 +354,7 @@ class operacionesBD {
     // Función que devuelve el ULTIMO AÑO DEFINIDO
     public static function insertarAñoNuevo($añoNuevo) {
         // Variable que devolverá la función
-        $resultado = TRUE;
+        $resultadoOperacion = TRUE;
         
         // Compruebo si esta identificado y tiene permiso.
         if (isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] == 0) {
@@ -366,37 +366,133 @@ class operacionesBD {
 
             // Compruebo el resultado
             if ($resultado === 1 || $resultado === "1") {
-                $resultado = TRUE;
+                $resultadoOperacion = TRUE;
             } else {
-                $resultado = FALSE;
+                $resultadoOperacion = FALSE;
             }
         }
         // Devolvemos el resultado
-        return $resultado;
+        return $resultadoOperacion;
     }
+    
     
      // Función que INSERTA los festivos en el nuevo año creado
     public static function insertarFestivos($añoNuevo, $opciones) {
         // Variable que devolverá la función
-        $resultado = TRUE;
+        $resultadoOperacion = TRUE;
+        $festivosGenerales = array();
         
-        // Compruebo si se quieren introducir los festivos generales
         
         // Compruebo si esta identificado y tiene permiso.
         if (isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] == 0) {
-            // Creo la consulta preparada
-            $sql = "INSERT INTO `anosdefinidos` (`anos`) VALUES (?)";
-            $arrayParametros = array($añoNuevo);
 
-            $resultado = self::consultaPreparada($sql, $arrayParametros, 'ACCION', 'negreira');
+            // Compruebo si se quieren introducir los festivos generales
+            if ($opciones['festivosGenerales']) {
+                // Recupero los festivos generales introducidos en la Base de Datos
+                // Comando para la consulta
+                $sql = "SELECT mes, dia FROM festivosgenerales ORDER BY mes DESC";
 
-            // Compruebo el resultado
-            if ($resultado === 1 || $resultado === "1") {
-                $resultado = TRUE;
-            } else {
-                $resultado = FALSE;
+                // Ejecuto la consulta
+                $resultado = self::ejecutaConsulta($sql, "negreira");
+
+                // Compruebo el resultado
+                if (isset($resultado)) {
+                    // Añadimos un elemento por cada festivo obtenido
+                    $row = $resultado->fetch();
+                    while ($row != null) {
+                        $festivosGenerales[] = array("mes" => $row[0], "dia" => $row[1]);
+                        $row = $resultado->fetch();
+                    }
+                }
             }
+            
+            
+            /*
+             * INSERTAMOS LOS FESTIVOS SEGÚN LAS OPCIONES SELECCIONADAS
+             */
+            
+            // Variables iniciales                        
+            $fechaFinal = date_create(date($añoNuevo . "-12-31"));
+            $fechaActual = date_create(date($añoNuevo . "-1-1"));
+            
+            for ($fechaActual; $fechaActual <= $fechaFinal; date_add($fechaActual, date_interval_create_from_date_string("+1 days"))) {
+                
+                // Variables
+                $mesActual = date_format($fechaActual, "n"); // Sin ceros iniciales
+                $diaActual = date_format($fechaActual, "j"); // Sin ceros iniciales
+                $diaSemanaActual = date_format($fechaActual, "N"); // Sin ceros iniciales
+                
+                // Creo la consulta preparada
+                $formatoFestivo = date_format($fechaActual, "Y-m-d");
+                $sql = "INSERT INTO `festivosregistro` (`festivo`) VALUES (?)";
+                $arrayParametros = array($formatoFestivo);
+
+                // Compruebo si la fecha actual es sábado o domingo
+                if($diaSemanaActual >= 6) {                   
+
+                    // Compruebo si queremos introducir los SÁBADOS como festivos
+                    if($opciones['festivoSabado'] && $diaSemanaActual == 6) {
+                        // Guardo el festivo
+                        $resultado = self::consultaPreparada($sql, $arrayParametros, 'ACCION', 'negreira');
+                        // Compruebo el resultado
+                        if ($resultado === 1 || $resultado === "1") {
+                            // Se guardo el festivo correctamente, pasamos al siguiente dia
+                            continue;
+                            
+                        } else {
+                            // Hubo un error al añadir el festivo, cancelamos y mostramos error                            
+                            $_SESSION['errores'] = "Error: Insercción rota en la fecha:".  date_format($fechaActual, "d/m/Y");
+                            $resultadoOperacion = FALSE;
+                            break;
+                        }
+                    }
+                    
+                    // Compruebo si queremos introducir los DOMINGOS como festivos
+                    if($opciones['festivoDomingo'] && $diaSemanaActual == 7) {
+                        // Guardo el festivo
+                        $resultado = self::consultaPreparada($sql, $arrayParametros, 'ACCION', 'negreira');
+                        // Compruebo el resultado
+                        if ($resultado === 1 || $resultado === "1") {
+                            // Se guardo el festivo correctamente, pasamos al siguiente dia
+                            continue;
+                            
+                        } else {
+                            // Hubo un error al añadir el festivo, cancelamos y mostramos error                            
+                            $_SESSION['errores'] = "Error: Insercción rota en la fecha:".  date_format($fechaActual, "d/m/Y");
+                            $resultadoOperacion = FALSE;
+                            break;
+                        }
+                    }                    
+                }
+                
+                // Compruebo si se quieren introducir los festivos generales
+                if ($opciones['festivosGenerales'] && !empty($festivosGenerales)) {
+                    foreach ($festivosGenerales as $value) {
+                        if($value['mes'] == $mesActual && $value['dia'] == $diaActual) {
+                            // Guardo el festivo
+                            $resultado = self::consultaPreparada($sql, $arrayParametros, 'ACCION', 'negreira');
+                            // Compruebo el resultado
+                            if ($resultado === 1 || $resultado === "1") {
+                                // Se guardo el festivo correctamente, pasamos al siguiente dia
+                                continue;
+                            } else {
+                                // Hubo un error al añadir el festivo, cancelamos y mostramos error                            
+                                $_SESSION['errores'] = "Error: Insercción rota en la fecha:" . date_format($fechaActual, "d/m/Y");
+                                $resultadoOperacion = FALSE;
+                                break;
+                            }
+                        }
+                    }
+                }
+                
+            } // Fin bucle recorre todo el año
+            
+        } else {
+            $resultadoOperacion = FALSE;
+            $_SESSION['errores'] = "Error: No tienes permisos necesarios!";
         }
+        
+        return $resultadoOperacion;
     }
 
 }
