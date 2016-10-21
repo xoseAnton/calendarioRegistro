@@ -62,7 +62,7 @@ function comparaFechas(formatoFechaMenor, formatoFechaMayor) {
 
 
 // Función para AÑADIR SUPRIMIR FESTIVOS
-function añadeSuprimeFestivo(diaFestivo) {    
+function añadeSuprimeFestivo(diaFestivo) {
     
     // Defino las variables    
     var listaFestivos = new Array();    
@@ -111,19 +111,25 @@ function añadeSuprimeFestivo(diaFestivo) {
     mostrarFestivos(listaFestivos);
 }
 
+
 // Función para ENSEÑAR LA ZONA DE BOTONES
 function enseñaZonaBotons() {
      document.getElementById("botonGrabar").style.visibility = "visible"; 
      document.getElementById("botonCancelar").style.visibility = "visible"; 
+     
+     // Ocultamos el Boton Cerrar
+     document.getElementById("botonCerrar").style.visibility = "hidden"; 
 }
+
 
 // Función para mostrar el campo de errores
 function mostrarErroresGrabar() {    
     // Mostramos la información de los errores            
     document.getElementById("zonaInformacionErrores").style.visibility = "visible"; 
-    // Mostramos el boton cancelar
-    document.getElementById("botonCancelar").style.visibility = "visible"; 
+    // Mostramos el boton Cerrar
+    document.getElementById("botonCerrar").style.visibility = "visible"; 
 }
+
 
 // Función para ocultar el campo de errores
 function ocultarErroresGrabar() {    
@@ -137,7 +143,7 @@ function mostrarIncidencias() {
     // Mostramos la información de las incidencias
     document.getElementById("zonaInformacionResultados").style.visibility = "visible"; 
     // Mostramos el boton cancelar
-    document.getElementById("botonCancelar").style.visibility = "visible"; 
+    document.getElementById("botonCerrar").style.visibility = "visible"; 
 }
 
 
@@ -147,6 +153,7 @@ function ocultarIncidencias() {
     document.getElementById("zonaInformacionResultados").style.visibility = "hidden"; 
 }
 
+
 // Función para ocultar la zona de "ESPERE-TRABAJANDO" y mostrar datos.
 function ocultarZonaTrabajando(){
     // Ocultamos la zona "ESPERE-TRABAJANDO"
@@ -155,6 +162,7 @@ function ocultarZonaTrabajando(){
     // Mostramos la zona de trabajo    
     document.getElementById("zonaPrograma").style.display = "block";
 }
+
 
 // Función para mostrar la zona de "ESPERE-TRABAJANDO" y ocultar datos.
 function mostrarZonaTrabajando(){

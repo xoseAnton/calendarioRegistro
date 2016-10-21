@@ -20,6 +20,7 @@ class mostrar {
             echo "<p class='textoInformacion'><span class='textoTituloInformacion'>Aviso: </span>Información no disponible!</p>";
     }
     
+    
     // Función para mostrar los usuarios en un "select"
     public static function optionUsuarios($selecUsuario) {
 
@@ -53,7 +54,6 @@ class mostrar {
     
     
     /* Función para crear EL CALENDARIO DE UN AÑO DADO */
-
     public static function crearCalendario($añoActual) {
 
         if ($añoActual != "") {
@@ -128,7 +128,6 @@ class mostrar {
     
     
     /* Función para crear EL CALENDARIO DONDE SE ADMINISTRAN LOS FESTIVOS */
-
     public static function crearCalendarioAdministraFestivos($añoActual) {
 
         if ($añoActual != "") {
@@ -200,8 +199,6 @@ class mostrar {
             echo "</div>"; // Fin zona Año
         }
     }
-    
-    
 
 }
 

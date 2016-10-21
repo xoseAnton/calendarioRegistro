@@ -7,11 +7,13 @@ require_once '/./clases/operacionesBD.php';
 // Inserto la clase para mostra datos
 require_once '/./clases/mostrar.php';
 
+
 // Comprobamos que se envía el año para consultar
 if(isset($_SESSION['añoConsulta']))
     $añoConsulta = $_SESSION['añoConsulta'];
 else
     $añoConsulta = "";
+
 
 // Comprobamos que el usuario está identificado
 if (!isset($_SESSION['usuario'])) {    

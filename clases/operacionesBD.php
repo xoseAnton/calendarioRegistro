@@ -81,8 +81,7 @@ class operacionesBD {
         
     /*
      * Función para LISTAR USUARIOS
-     */
-    
+     */    
     public static function listarUsuariosActivos() {
 
         // Comando para la consulta
@@ -111,7 +110,6 @@ class operacionesBD {
     /*
      * Función para verificar usuarios en la base de datos
      */
-
     public static function verificaUsuario($nombre, $contrasena) {
         // Defino la variable
         $verificado = false;

@@ -18,6 +18,7 @@ if(isset($_SESSION['añoConsulta']))
 else
     $añoConsulta = "";
 
+
 // Comprobamos que el usuario está identificado y tiene el permiso adecuado
 if (!isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] != 0) {    
     // Borramos los datos de la sesión
@@ -25,6 +26,7 @@ if (!isset($_SESSION['usuario']) && $_SESSION['rolUsuario'] != 0) {
     // Redirigimos a la pantalla inicial
     header("Location: index.php");
 }
+
 
 // Comprobamos si queremos grabar los festivos
 if(isset($_POST['botonGrabar'])) {
@@ -152,6 +154,9 @@ if(isset($_POST['botonGrabar'])) {
                                 </div>
                                 <div class="zonaBotones">
                                     <input type="submit" id="botonCancelar" class="botonMenu" name="botonCancelar" value="Cancelar" onclick="mostrarZonaTrabajando()" />
+                                </div>                                
+                                <div class="zonaBotones">
+                                    <input type="button" id="botonCerrar" class="botonMenu" name="botonCerrar" value="Cerrar" onclick="window.close()" />
                                 </div>
                             </div>                    
                         </form>

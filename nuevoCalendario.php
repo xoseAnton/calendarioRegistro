@@ -126,6 +126,7 @@ and open the template in the editor.
                 </div>               
             </fieldset>
 
+            <!-- Zona para mostrar Errores -->
             <div id="zonaInformacionErrores">                
                 <input type="text" id="textoInformacionErrores" value="" readonly />
             </div>
@@ -167,14 +168,14 @@ and open the template in the editor.
 
                     </fieldset>
 
-                    <!-- Zona de BOTONES -->
                     
+                    <!-- Zona de BOTONES -->                    
                     <fieldset id="zonaAdministrarAñoNuevo">                        
                         <div class = "zonaAdministrar">
                             <input type = "submit" id = "botonCrearAñoNuevo" class="botonMenu" name = "botonCrearAñoNuevo" value = "Crear Año" onclick="mostrarZonaTrabajando()" title = "Crea un nuevo año con festivos"/>
                         </div>
                         <div class = "zonaAdministrar">
-                            <input type = "button" id = "botonCancelarAño" class="botonMenu" name = "botonCancelarAño" value = "Cerrar" onclick="window.close()"title = "Cancela la creación de un nuevo año"/>
+                            <input type = "button" id = "botonCancelarAño" class="botonMenu" name = "botonCancelarAño" value = "Cerrar" onclick="window.close()" title = "Cancela la creación de un nuevo año"/>
                         </div>
                         <div class="cancelarFlotantes"></div>
                     </fieldset>

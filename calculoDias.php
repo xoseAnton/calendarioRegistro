@@ -1,14 +1,18 @@
 <?php
+
 // Antes de nada inicio una nueva sesión o reanudo la existente
 session_start();
+
 
 // Insertamos la clase para utilizar la base de datos
 require_once '/./clases/operacionesBD.php';
 // Inserto la clase para mostra datos
 require_once '/./clases/mostrar.php';
 
+
 // Establecemos por defecto la zona horaria
 date_default_timezone_set('Europe/Berlin');
+
 
 // Comprobamos que el usuario está identificado
 if (!isset($_SESSION['usuario'])) {    
@@ -117,6 +121,7 @@ if (isset($_POST['botonVisualizaCalendario'])) {
  
 }
 
+
 // Comprobamos que queremos VISUALIZAR un calendario
 if (isset($_POST['botonAdministraCalendario']) && $_SESSION['rolUsuario'] == 0) {    
     // Guardamos en la variable de sesión el calendario consultado
@@ -125,6 +130,7 @@ if (isset($_POST['botonAdministraCalendario']) && $_SESSION['rolUsuario'] == 0) 
     header("Location: administraCalendario.php");
  
 }
+
 
 // Comprobamos que queremos DEFINIR UN NUEVO AÑO
 if (isset($_POST['botonAñadirAño']) && $_SESSION['rolUsuario'] == 0) {        
@@ -151,6 +157,7 @@ and open the template in the editor.
         <!-- Incluimos el archivo de operaciones con javaScript -->        
         <script type="text/javascript" src="clases/operacionesJS.js"></script>
     </head>
+    
     <body onload="ocultarZonaTrabajando()">
         
         <!-- Zona de Información -->
@@ -230,10 +237,10 @@ and open the template in the editor.
                 <div class="cancelarFlotantes"></div>
             </fieldset>
             
+            <!-- Zona de Información Errores -->
             <div id="zonaInformacionErrores">                
                 <input type="text" id="textoInformacionErrores" value="" readonly />
             </div>
-            
             <?php                
                 // Comprobamos si existen errores para mostrar            
                 if (isset($_SESSION['errores'])) {
@@ -242,6 +249,8 @@ and open the template in the editor.
                 }
             ?>
             
+            
+            <!-- Zona de Visualización Errores -->
             <div id="zonaVisualizaCalendario">
 
                 <form id="formularioCalendario" name="formularioCalendario" action="<?php echo $_SERVER['PHP_SELF']; ?>" target="_blank" method="post" >                        
@@ -268,9 +277,6 @@ and open the template in the editor.
                             <input type="submit" id="botonVisualizaCalendario" class="botonMenu" name="botonVisualizaCalendario" value="VIZUALIZAR" title="Muestra el calendario seleccionado con sus festivos"/>
                         </div>
                         <div class="cancelarFlotantes"></div>
-
-
-
                     </fieldset>
                     
 
@@ -289,10 +295,10 @@ and open the template in the editor.
                         echo "</fieldset>";
                     }
                     ?>                
-            </form>
+                    
+                </form>
                 
-            </div>
-            
+            </div>            
             
         </div>
     </body>
